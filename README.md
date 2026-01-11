@@ -39,7 +39,7 @@ Vigil is an open-source framework that provides cryptographically-verified runti
 **Swift Package Manager:**
 ```swift
 dependencies: [
-    .package(url: "https://github.com/user/vigil.git", from: "1.0.0")
+    .package(url: "https://github.com/nkhmelni/Vigil.git", from: "1.0.0")
 ]
 ```
 
@@ -113,10 +113,10 @@ Vigil.validate(timeout: 5.0) { result in
 
 ## Documentation
 
-- [Architecture](./ARCHITECTURE.md) - Deep dive into design decisions
-- [Security Model](./SECURITY.md) - Threat model and mitigations
-- [Integration Guide](./INTEGRATION.md) - Step-by-step setup
-- [API Reference](./API.md) - Complete API documentation
+- [Architecture](./Documentation/ARCHITECTURE.md) - Deep dive into design decisions
+- [Security Model](./Documentation/SECURITY.md) - Threat model and mitigations
+- [Integration Guide](./Documentation/INTEGRATION.md) - Step-by-step setup
+- [API Reference](./Documentation/API.md) - Complete API documentation
 
 ## Security Considerations
 
@@ -132,7 +132,7 @@ It does **not** protect against:
 - Hardware-based attacks
 - Sophisticated attackers with physical device access and unlimited time
 
-See [SECURITY.md](./SECURITY.md) for the complete threat model.
+See [SECURITY.md](./Documentation/SECURITY.md) for the complete threat model.
 
 ## License
 
