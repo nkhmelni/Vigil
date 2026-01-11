@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/nkhmelni/Vigil'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Vigil Contributors' => 'contact@vigil-project.dev' }
+  s.author           = { 'Vigil Contributors' => '@temprecipient' }
   s.source           = { :git => 'https://github.com/nkhmelni/Vigil.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '14.0'

@@ -21,7 +21,9 @@ Before creating an issue, please:
 
 **Do not report security vulnerabilities through public issues.**
 
-Instead, please email security@vigil-project.dev with:
+Instead, please contact via Telegram: @temprecipient
+
+Include:
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact assessment

@@ -539,7 +539,7 @@ If any of these fail (e.g., jailbreak), Vigil's guarantees are weakened.
 If you discover a security vulnerability in Vigil:
 
 1. **Do not** open a public issue
-2. Email security@[project-domain] with details
+2. Contact via Telegram: @temprecipient
 3. Include steps to reproduce
 4. Allow 90 days for fix before public disclosure
 
