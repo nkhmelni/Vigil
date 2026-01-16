@@ -107,6 +107,15 @@ The `__TEXT` segment contains executable code and is:
 
 Other segments (`__DATA`, `__LINKEDIT`) are mutable and cannot be reliably hashed.
 
+**Hash Determinism:**
+
+The __TEXT hash exhibits these properties:
+- **Same binary = Same hash**: Running the same binary produces identical hashes across multiple executions
+- **Code change = Different hash**: Modifying even a single line of code produces a completely different hash
+- **Rebuild = Different hash**: Rebuilding the same source code typically produces a different hash due to build non-determinism (timestamps, UUIDs, etc.)
+
+This means expected hashes must be computed from the actual built binary, not from source code.
+
 **Implementation Notes:**
 
 ```objc
@@ -184,6 +193,14 @@ Keys are created with `kSecAccessControlPrivateKeyUsage`, which means:
 - Signing operations happen inside the Secure Enclave
 - Private key material never enters main memory
 - Operations may require biometric authentication (configurable)
+
+**Secure Enclave Availability:**
+
+On devices with Secure Enclave (most modern Apple devices), keys are generated in hardware. On devices without Secure Enclave (simulators, older Macs), the key manager automatically falls back to software-based keys. This allows development and testing while maintaining hardware security in production.
+
+Logs indicate key storage location:
+- `"Key generated in SECURE ENCLAVE"` - Hardware-backed key
+- `"Using SOFTWARE key"` - Software fallback (less secure)
 
 ### AttestationStore
 
@@ -530,7 +547,7 @@ Re-signed App:
 @property (nonatomic, strong) NSData *signature;     // SE signature of (hash + nonce)
 @property (nonatomic, strong) NSData *publicKey;     // App's SE public key
 @property (nonatomic, strong) NSData *nonce;         // Random challenge
-@property (nonatomic, assign) uint64_t timestamp;    // For freshness
+@property (nonatomic, assign) uint64_t timestamp;    // For freshness (optional)
 @end
 
 @interface VigilResponse : NSObject <NSSecureCoding>
@@ -541,6 +558,13 @@ Re-signed App:
 @property (nonatomic, strong) NSData *nonce;         // Response nonce
 @end
 ```
+
+**Signature Format:**
+
+- **Request signature** covers: `hash + nonce`
+- **Response signature** covers: `validByte + validatorHash + nonce`
+
+Note: Timestamp is present in the protocol for potential future use but is not included in signature computation for the XPC transport.
 
 ### Protocol Flow
 

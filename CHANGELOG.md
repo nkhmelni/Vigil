@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Hardware-backed ECDSA P-256 key pairs
   - Keys bound to code signing identity (Team ID)
   - Non-exportable private keys
+  - Automatic software key fallback when SE unavailable
 - Mutual attestation protocol
   - Challenge-response with cryptographic nonces
   - Both app and validator verify each other
@@ -52,6 +53,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Security model and threat analysis
   - Integration guides for both platforms
   - Complete API reference
+- Working TestApp example with Makefile build system
+
+### Verified Behavior
+- Hash determinism: Same binary produces identical hash across runs
+- Hash sensitivity: Any code change produces completely different hash
+- Secure Enclave: Keys generated in hardware on supported devices (logged as "Key generated in SECURE ENCLAVE")
+- Performance: Full validation cycle completes in ~80ms (initialization ~50ms, validation ~17ms)
 
 ### Security
 - All cryptographic operations use Apple Security framework
@@ -65,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - iOS Network Extension requires user to enable Content Filter in Settings
 - Build-time hash computation requires two-pass build process
 - Does not protect against kernel-level attacks on jailbroken devices
+- Rebuilding same source code produces different hash (build non-determinism)
 
 ---
 

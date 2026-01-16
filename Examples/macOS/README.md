@@ -2,6 +2,8 @@
 
 This directory contains a sample macOS application demonstrating Vigil integration.
 
+> **Note:** A complete working test application is available at `TestApp/` in the repository root. It includes a Makefile-based build system that demonstrates the full integration including XPC service bundling, code signing, and entitlements.
+
 ## Structure
 
 ```

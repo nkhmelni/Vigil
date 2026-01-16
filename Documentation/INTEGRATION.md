@@ -78,6 +78,8 @@ pod 'Vigil', '~> 1.0'
 3. Name it `VigilValidator`
 4. Language: Objective-C or Swift
 
+**Important:** The XPC service bundle folder name must match the bundle identifier exactly. For example, if your bundle identifier is `com.yourteam.app.validator`, the XPC bundle must be placed at `YourApp.app/Contents/XPCServices/com.yourteam.app.validator.xpc/`.
+
 ### Step 2: Configure the XPC Service
 
 **Info.plist** for XPC Service:
@@ -775,6 +777,17 @@ if (![SEKeyManager isSecureEnclaveAvailable]) {
 
 - **Cause**: SE key generation failed or app was re-installed
 - **Solution**: Regenerate keys and perform key exchange
+
+#### "errSecMissingEntitlement" or "-34018"
+
+- **Cause**: Missing Keychain entitlements for key storage
+- **Solution**: Both app and XPC service require the `keychain-access-groups` entitlement:
+  ```xml
+  <key>keychain-access-groups</key>
+  <array>
+      <string>$(AppIdentifierPrefix)com.yourteam.app</string>
+  </array>
+  ```
 
 #### "Hash mismatch"
 
